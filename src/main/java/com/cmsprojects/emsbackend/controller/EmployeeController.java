@@ -48,4 +48,15 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    //BUILD UPDATE EMPLOYEE REST API ------
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,@RequestBody EmployeeDto updatedEmployee){
+       EmployeeDto employeeDto = employeeService.updateEmployee(employeeId,updatedEmployee);
+        if(employeeDto != null){
+            return new ResponseEntity<>(employeeDto, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
